@@ -1,0 +1,36 @@
+h1, p {
+  font-family: Lato;
+}
+
+.card-group {
+  background-color: #83cdf893;
+  padding: 10px 15px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  margin-bottom: 5px;
+  text-align: justify;
+}
+
+.img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+img {
+  width: 100%;
+}
+
+.container {
+  background-color: blueviolet;
+}
+
+.card {
+  width: 100%;
+}
+
+.col {
+  margin-bottom: 10px;
+}
