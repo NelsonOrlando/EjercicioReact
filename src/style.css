@@ -52,7 +52,7 @@ img {
 
 .card {
   width: 100%;
-  box-shadow: 2px 10px 12px 2px #888888;
+  box-shadow: 2px 5px 10px 2px #888888;
   border-radius: 10px;
   font-family: 'Open Sans', sans-serif;
 }
@@ -79,8 +79,28 @@ span {
   font-weight: 700;
 }
 
+.btn {
+  font-size: 15px ;
+  padding: 5px 10px;
+}
 
+.btn:first-child {
+  margin-right: 30px;
+}
 
+@media screen and (min-width: 1200px) {
+  .btn {
+    padding: 5px 7px;
+  }
+
+  .btn:first-child {
+    margin-right: 10px;
+  }
+}
+
+.btn-group>.btn-group:not(:first-child)>.btn, .btn-group>.btn:not(:first-child)  {
+  border-radius: .25rem;
+}
 
 .img-modal {
   width: 100%;
@@ -90,13 +110,25 @@ span {
 
 .modal-dialog {
   width: 100%;
-  max-width: 900px;
-  height: auto;
+  max-width: 800px;
+  height: 100%;
 }
 
 .modal-body {
   padding: 0px;
   border: 2px solid #fff;
+}
+
+.modal-header {
+  padding: 0px;
+  padding-right: 15px;
+  border: 0px;
+  font-weight: 700;
+  color: gray;
+}
+
+.modal-title {
+  margin: 0 auto;
 }
 
 .modal-footer {
