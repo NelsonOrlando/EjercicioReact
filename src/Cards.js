@@ -1,10 +1,15 @@
 import React from 'react';
-import archives from './Api.json';
-import Example from './modal'
+// import archives from './Api.json';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
+
+import { faHeart} from "@fortawesome/fontawesome-free-regular";
+//import { faHeart} from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
+import { faBed } from "@fortawesome/free-solid-svg-icons";
+import { faShower } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import './style.css';
 
@@ -17,11 +22,12 @@ class Cards extends React.Component {
   }
 
   componentDidMount() {
-    let dates = archives
+    let dates = fetch('https://viaguate-10-backend-cliente.mybluemix.net/api/accommodation/ViewVacationrentals');
+    dates.then(response => response.json()).then(data =>{
     this.setState({
-      informations: dates
+      informations: data
     })
-    //console.log(dates);
+   })
   }
 
   render() {
@@ -31,20 +37,40 @@ class Cards extends React.Component {
           <>
             <Col className="col" xs={12} md={6} lg={4} xl={3}>
               <Card>
-                <Card.Img variant="top" src={informations.url} />
-                <Card.Body>
+                <Card.Img className="card-img" variant="top" src={informations.mainPicture.urlPhoto} />
+                <FontAwesomeIcon className="card-icon-Ilike" icon={faHeart} />
+                <div className="card-offer">Offer</div>
+                <div className="card-price"><span>$ {informations.basePrice} </span>/night</div>
+                <Card.Body className="card-body">
                   <Card.Title>{informations.title}</Card.Title>
                   <Card.Text>
-                    {informations.description}
+                    <FontAwesomeIcon className="mr-1" icon={faMapMarkerAlt} />
+                    {informations.address.realAddress}
                   </Card.Text>
-                  <ButtonGroup>
-                  <a href={informations.url} target="blank_">
-                    <Button variant="outline-primary">
-                      Go to photo <span>{informations.id}</span>
-                    </Button>
-                  </a>
-                  <Example />
-                  </ButtonGroup>
+                  <div className="separator"></div>
+                  <div className="d-flex justify-content-around">
+                    <div>
+                      <div className="card-date-icon d-flex justify-content-center align-items-center">
+                        <FontAwesomeIcon className=" mr-1" icon={faUserFriends} />
+                        {informations.capacityOfPeople}
+                      </div>
+                      <p className="card-desc-icon">Capacity</p>
+                    </div>
+                    <div>
+                      <div className="card-date-icon d-flex justify-content-center align-items-center">
+                        <FontAwesomeIcon className=" mr-1" icon={faBed} />
+                        {informations.noBedroom}
+                      </div>
+                      <p className="card-desc-icon">Bedrooms</p>
+                    </div>
+                    <div>
+                      <div className="card-date-icon d-flex justify-content-center align-items-center">
+                        <FontAwesomeIcon className=" mr-1" icon={faShower} />
+                        {informations.noBathroom}
+                      </div>
+                      <p className="card-desc-icon">Bathrooms</p>
+                    </div>
+                  </div>
                 </Card.Body>
               </Card>
             </Col>
